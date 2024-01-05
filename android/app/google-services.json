@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "86144518123",
+    "project_id": "walldrop-47668",
+    "storage_bucket": "walldrop-47668.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86144518123:android:cb989df84a16e067517bae",
+        "android_client_info": {
+          "package_name": "com.example.walldrop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB15Sej4er-qX5YZlaIxyj4f35ZzCk1M_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

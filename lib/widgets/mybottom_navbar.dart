@@ -12,13 +12,13 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => FadeInUp(from: 100,duration: Duration(milliseconds: 1000),delay: Duration(seconds: 1),
       child: BottomNavigationBar(type: BottomNavigationBarType.fixed,
-            selectedItemColor: kiconcolor,
+            selectedItemColor: Color(0xffD3A121),
            unselectedFontSize: 0,
-           unselectedItemColor: kiconcolor.withOpacity(.3),
+           unselectedItemColor: kiconcolor,
             iconSize: 35,
             selectedFontSize: 0,
             elevation: .2,
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.transparent.withOpacity(.6),
             currentIndex: controller.currentIndex.value,
             onTap: (index) {
               controller.changeTabIndex(index);

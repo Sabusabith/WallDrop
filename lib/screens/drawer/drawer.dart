@@ -5,6 +5,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wall4k/common/colors.dart';
 import 'package:wall4k/screens/favorites/favorites.dart';
+import 'package:wall4k/screens/favorites/favorites2.dart';
 
 class DrawerScreen extends StatelessWidget {
   const DrawerScreen({super.key});
@@ -103,7 +104,7 @@ class DrawerScreen extends StatelessWidget {
                 duration: Duration(milliseconds: 1000),
                 delay: Duration(milliseconds: 300),
                 child: ListTile(onTap: (){
-                  Get.to(Favorites());
+                  Get.to(Favorites2());
                 },
                     shape: Border(),
                     title: Text(

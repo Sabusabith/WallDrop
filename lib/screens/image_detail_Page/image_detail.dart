@@ -26,121 +26,142 @@ class ImageDetail extends StatelessWidget {
       backgroundColor: kbgcolor,
       extendBody: true,
       extendBodyBehindAppBar: true,
-      body: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: () {
-          controller.ontap();
-        },
-        child: Container(
-          width: size.width,
-          height: size.height,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(imageData),
-              fit: BoxFit.cover,
+      body:Obx(()=>
+         controller.isLoading.value? Container(decoration: BoxDecoration(image: DecorationImage(image: NetworkImage(imageData),fit: BoxFit.cover)),
+                      
+                      child: Center(
+                        child: AlertDialog(
+                         backgroundColor: Colors.transparent.withOpacity(.4),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CircularProgressIndicator(color: Colors.white,),
+                              SizedBox(height: 10),
+                              Text('Downloading image...',style: TextStyle(color: Colors.grey.shade200),),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                
+              : GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            controller.ontap();
+          },
+          child: Container(
+            width: size.width,
+            height: size.height,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(imageData),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          child: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Obx(
-                      () => controller.click.value
-                          ? FadeInLeft(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 10,
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    controller.ontap();
-                                    Get.back();
-                                  },
-                                  child: Icon(
-                                    Icons.arrow_back,
-                                    size: 30,
-                                    color: kiconcolor.withOpacity(.9),
+            child: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Obx(
+                        () => controller.click.value
+                            ? FadeInLeft(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                    vertical: 10,
                                   ),
-                                ),
-                              ),
-                            )
-                          : SizedBox(),
-                    ),
-                    Spacer(),
-                    Obx(
-                      () => controller.click.value
-                          ? FadeInRight(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 10,
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    controller.ontap();
-                                    controller.toggleFavorite(imageData);
-                                  },
-                                  child: Icon(
-                                    controller.isFavorite(imageData)
-                                        ? Icons.favorite
-                                        : Icons.favorite_border,
-                                    size: 30,
-                                    color: controller.isFavorite(imageData)
-                                        ? Colors.red
-                                        : kiconcolor.withOpacity(.9),
-                                  ),
-                                ),
-                              ),
-                            )
-                          : SizedBox(),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Obx(
-                  () => controller.click.value
-                      ? Expanded(
-                          child: Align(
-                            alignment: Alignment(0, .85),
-                            child: FadeInDown(
-                              child: InkWell(
-                                onTap: () {
-                                  _downloadImage(imageData);
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.all(2),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: kbgcolor,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(16.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      controller.ontap();
+                                      Get.back();
+                                    },
                                     child: Icon(
-                                      Icons.file_download_outlined,
-                                      size: 32,
-                                      color: Colors.white,
+                                      Icons.arrow_back,
+                                      size: 30,
+                                      color: kiconcolor.withOpacity(.9),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : SizedBox(),
+                      ),
+                      Spacer(),
+                      Obx(
+                        () => controller.click.value
+                            ? FadeInRight(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                    vertical: 10,
+                                  ),
+                                  child: InkWell(
+                                    onTap: () {
+                                      controller.ontap();
+                                      controller.toggleFavorite(imageData);
+                                    },
+                                    child: Icon(
+                                      controller.isFavorite(imageData)
+                                          ? Icons.favorite
+                                          : Icons.favorite_border,
+                                      size: 30,
+                                      color: controller.isFavorite(imageData)
+                                          ? Colors.red
+                                          : kiconcolor.withOpacity(.9),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : SizedBox(),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Obx(
+                    () => controller.click.value
+                        ? Expanded(
+                            child: Align(
+                              alignment: Alignment(0, .85),
+                              child: FadeInDown(
+                                child: InkWell(
+                                  onTap: () {
+                                    _downloadImage(imageData);
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.all(2),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: kbgcolor,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: Icon(
+                                        Icons.file_download_outlined,
+                                        size: 32,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        )
-                      : SizedBox(),
-                ),
-              ],
+                          )
+                        : SizedBox(),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
   }
-
-  Future<void> _downloadImage(String imageUrl) async {
+Future<void> _downloadImage(String imageUrl) async {
     try {
+      // Set loading to true when starting the download
+      controller.isLoading.value = true;
+
       Dio dio = Dio();
       Response<Uint8List> response = await dio.get(
         imageUrl,
@@ -172,6 +193,11 @@ class ImageDetail extends StatelessWidget {
       }
     } catch (e) {
       print('Error: $e');
+    } finally {
+      // Set loading to false when the download is complete or encounters an error
+    controller.  isLoading.value = false;
     }
   }
 }
+
+
