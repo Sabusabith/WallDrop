@@ -12,13 +12,18 @@ import 'package:wall4k/screens/page3/page3.dart';
 import 'package:wall4k/widgets/mybottom_navbar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../controller/bottam_nav_controller.dart';
+import '../../controller/searchController.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
   final BottomNavBarController controller = Get.put(BottomNavBarController());
   final HomeController homeController = Get.put(HomeController());
+    TextEditingController searchControllerTextField = TextEditingController(); // Add a TextEditingController
+
   @override
   Widget build(BuildContext context) {
+        SearchControllers searchController = Get.put(SearchControllers()); // Move initialization here
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       bottomNavigationBar: BottomNavBar(),
@@ -40,7 +45,11 @@ class Home extends StatelessWidget {
                 )
               : SizedBox(
                   height: 40,
-                  child: TextField(
+                  child: TextField(onChanged:(value) {
+                    searchController.filterImagesList(value);
+                    
+                  },
+                  controller: searchControllerTextField,
                     cursorColor: kiconcolor,
                     style: TextStyle(color: Colors.grey.shade300),
                     decoration: InputDecoration(
@@ -50,6 +59,7 @@ class Home extends StatelessWidget {
                         suffixIcon: GestureDetector(
                             onTap: () {
                               homeController.clickSearch();
+                   searchControllerTextField.clear();
                             },
                             child: Icon(
                               Icons.close,
