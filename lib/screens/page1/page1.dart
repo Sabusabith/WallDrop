@@ -1,11 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:wall4k/common/colors.dart';
 import 'package:wall4k/controller/api/getphotosController.dart';
 import 'package:wall4k/screens/image_detail_Page/image_detail.dart';
-import 'package:wall4k/common/colors.dart';
 
 import '../../controller/api/searchController.dart';
 import '../../model/apiModel/getImagesModel.dart';
@@ -30,13 +30,15 @@ class Page1 extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
-                  child: Container(width: 100,height: 30,
-                    child: LoadingIndicator(
-                                    indicatorType: Indicator.ballPulseSync,
-                                    colors: [kiconcolor],
-                                    strokeWidth: .1,
-                                  ),
-                  ));
+                  child: SizedBox(
+                width: 100,
+                height: 30,
+                child: LoadingIndicator(
+                  indicatorType: Indicator.ballPulseSync,
+                  colors: [kiconcolor],
+                  strokeWidth: .1,
+                ),
+              ));
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else {
@@ -44,7 +46,7 @@ class Page1 extends StatelessWidget {
               List<Photo> apiImages = photosController.apiImages;
 
               return GridView.builder(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: .6,
@@ -79,9 +81,10 @@ class Page1 extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                           child: CachedNetworkImage(
                             imageUrl: apiImages[index].src.portrait.toString(),
-                            placeholder: (context, url) => ShimmerEffect(),
+                            placeholder: (context, url) =>
+                                const ShimmerEffect(),
                             errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
+                                const Icon(Icons.error),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -100,7 +103,7 @@ class Page1 extends StatelessWidget {
   Widget buildSearchResults() {
     return Obx(() {
       if (searchControllers.isLoading.value) {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       } else {
         return ListView.builder(
           itemCount: searchControllers.searchResults.length,
@@ -122,6 +125,8 @@ class Page1 extends StatelessWidget {
 }
 
 class ShimmerEffect extends StatelessWidget {
+  const ShimmerEffect({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(

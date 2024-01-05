@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,12 +16,12 @@ class Splash extends StatelessWidget {
        builder:(controller) => Container(
           width: size.width,
           height: size.height,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/splash.jpg'), fit: BoxFit.cover),
           ),
           child: Align(
-              alignment: Alignment(0, .55),
+              alignment: const Alignment(0, .55),
               child: Text(
                 "WallDrop",
                 style: GoogleFonts.audiowide(

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wall4k/common/colors.dart';
 
@@ -28,7 +29,7 @@ class SearchScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Row(
@@ -39,7 +40,7 @@ class SearchScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   )
                 ],
@@ -71,6 +72,7 @@ class SearchScreen extends StatelessWidget {
         leading: FadeInUp(
           child: GestureDetector(
             onTap: () {
+              searchControllerTextField.clear();
               Get.back();
             },
             child: Icon(
@@ -104,7 +106,7 @@ class SearchScreen extends StatelessWidget {
                   hintStyle: GoogleFonts.dmMono(
                       color: kiconcolor.withOpacity(.6), letterSpacing: 2),
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
                   border: InputBorder.none,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -138,7 +140,16 @@ class SearchScreen extends StatelessWidget {
   Widget buildSearchResults() {
     return Obx(() {
       if (searchControllers.isLoading.value) {
-        return Center(child: CircularProgressIndicator());
+        return Center(
+            child: SizedBox(
+          width: 100,
+          height: 30,
+          child: LoadingIndicator(
+            indicatorType: Indicator.ballPulseSync,
+            colors: [kiconcolor],
+            strokeWidth: .1,
+          ),
+        ));
       } else {
         return ListView.builder(
           itemCount: searchControllers.searchResults.length,
@@ -146,27 +157,30 @@ class SearchScreen extends StatelessWidget {
             final photo = searchControllers.searchResults[index];
 
             // Customize how you want to display search results
-            return Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+            return Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
               width: MediaQuery.of(context).size.width,
               height: 430,
-              margin: EdgeInsets.all(12),
-              child: GestureDetector(onTap: (){
-                Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ImageDetail(
-                              imageData: photo.src.portrait,
-                            ),
-                          ),
-                        );
-              },
-                child: ClipRRect(borderRadius: BorderRadius.circular(5),
+              margin: const EdgeInsets.all(12),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ImageDetail(
+                        imageData: photo.src.portrait,
+                      ),
+                    ),
+                  );
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
                   child: CachedNetworkImage(
                     imageUrl: photo.src.portrait,
                     height: 120,
                     fit: BoxFit.cover,
                     placeholder: (context, url) => ShimmerEffect(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
                 ),
               ),
@@ -180,10 +194,20 @@ class SearchScreen extends StatelessWidget {
   Widget buildSearchResults2() {
     return Obx(() {
       if (searchControllers.isLoading.value) {
-        return Center(child: CircularProgressIndicator());
+        return Center(
+            child: Center(
+                child: SizedBox(
+          width: 100,
+          height: 30,
+          child: LoadingIndicator(
+            indicatorType: Indicator.ballPulseSync,
+            colors: [kiconcolor],
+            strokeWidth: .1,
+          ),
+        )));
       } else {
         return GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: .6,
             crossAxisSpacing: .1,
@@ -193,12 +217,24 @@ class SearchScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             final photo = searchControllers.searchResults[index];
             return Card(
-              child: CachedNetworkImage(
-                imageUrl: photo.src.portrait,
-                height: 120,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => ShimmerEffect(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ImageDetail(
+                        imageData: photo.src.portrait,
+                      ),
+                    ),
+                  );
+                },
+                child: CachedNetworkImage(
+                  imageUrl: photo.src.portrait,
+                  height: 120,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => ShimmerEffect(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
             );
           },

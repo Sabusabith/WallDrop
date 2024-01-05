@@ -9,6 +9,7 @@ import '../model/favoritemodel.dart';
 
 class ImageDetailController extends GetxController {
   RxBool click = false.obs;
+   RxBool clicks = false.obs;
   RxBool isLoading = false.obs;
 
   // Modify this line to use Hive box for favorites
@@ -29,6 +30,7 @@ class ImageDetailController extends GetxController {
   }
 
   Future<void> toggleFavorite(String imageUrl) async {
+    clicks. value = !clicks.value;
     List<FavoriteItem> favorites = box.values.toList();
 
     print('Current favorites: $favorites');

@@ -18,7 +18,7 @@ class GetPhotosController extends GetxController {
 
   fetchImages() async {
     final String apiKey = "ziUAmbzZ7nhOwdtNxz3sYCJHcOTIL13RHzIrWxaey1bPZZKAeap9ZwsM"; // Replace with your actual API key
-    final String apiUrl = "https://api.pexels.com/v1/curated?per_page=4000";
+    final String apiUrl = "https://api.pexels.com/v1/curated?per_page=10000000";
 
     try {
       final Dio dio = Dio();

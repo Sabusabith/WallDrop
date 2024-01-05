@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:wall4k/common/colors.dart';
 import 'package:wall4k/controller/api/searchController.dart';
 import 'package:wall4k/controller/homecontroller.dart';
@@ -11,7 +12,7 @@ import 'package:wall4k/screens/page1/page1.dart';
 import 'package:wall4k/screens/page3/page3.dart';
 import 'package:wall4k/screens/searchscreen.dart/searchScreen.dart';
 import 'package:wall4k/widgets/mybottom_navbar.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import '../../controller/bottam_nav_controller.dart';
 
 class Home extends StatelessWidget {
@@ -34,8 +35,8 @@ class Home extends StatelessWidget {
       backgroundColor: kbgcolor,
       appBar: AppBar(  bottom: PreferredSize(
             preferredSize: Size(size.width, 20),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
                   SizedBox(height: 5,)
@@ -48,8 +49,8 @@ class Home extends StatelessWidget {
         title:
                FadeInDown(
                   from: 100,
-                  duration: Duration(milliseconds: 1000),
-                  delay: Duration(seconds: 1),
+                  duration: const Duration(milliseconds: 1000),
+                  delay: const Duration(seconds: 1),
                   child: Text(
                     "WallDrop",
                     style: GoogleFonts.audiowide(color: kiconcolor),
@@ -62,8 +63,8 @@ class Home extends StatelessWidget {
             padding: const EdgeInsets.only(right: 15),
             child: FadeInRight(
               from: 100,
-              duration: Duration(milliseconds: 1000),
-              delay: Duration(seconds: 1),
+              duration: const Duration(milliseconds: 1000),
+              delay: const Duration(seconds: 1),
               child: IconButton(
                         onPressed: () {
                         Get.to(SearchScreen());
@@ -90,8 +91,8 @@ class Home extends StatelessWidget {
                 },
                 child: FadeInLeft(
                   from: 100,
-                  duration: Duration(milliseconds: 1000),
-                  delay: Duration(seconds: 1),
+                  duration: const Duration(milliseconds: 1000),
+                  delay: const Duration(seconds: 1),
                   child: Image.asset(
                     "assets/images/menu.png",
                     color: kiconcolor,
@@ -114,7 +115,7 @@ class Home extends StatelessWidget {
               case 1:
                 return Favorites();
               case 2:
-                return Page3();
+                return const Page3();
               default:
                 return Page1();
             }

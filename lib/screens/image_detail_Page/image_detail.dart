@@ -35,8 +35,8 @@ class ImageDetail extends StatelessWidget {
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              CircularProgressIndicator(color: Colors.white,),
-                              SizedBox(height: 10),
+                              const CircularProgressIndicator(color: Colors.white,),
+                              const SizedBox(height: 10),
                               Text('Downloading image...',style: TextStyle(color: Colors.grey.shade200),),
                             ],
                           ),
@@ -66,76 +66,73 @@ class ImageDetail extends StatelessWidget {
                     children: [
                       Obx(
                         () => controller.click.value
-                            ? FadeInLeft(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                    vertical: 10,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {
-                                      controller.ontap();
-                                      Get.back();
-                                    },
-                                    child: Icon(
-                                      Icons.arrow_back,
-                                      size: 30,
-                                      color: kiconcolor.withOpacity(.9),
-                                    ),
-                                  ),
+                            ? Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 10,
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                 
+                                  Get.back();
+                                },
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  size: 30,
+                                  color: kiconcolor.withOpacity(.9),
                                 ),
-                              )
-                            : SizedBox(),
+                              ),
+                            )
+                            : const SizedBox(),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Obx(
                         () => controller.click.value
-                            ? FadeInRight(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                    vertical: 10,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {
-                                      controller.ontap();
-                                      controller.toggleFavorite(imageData);
-                                    },
-                                    child: Icon(
-                                      controller.isFavorite(imageData)
-                                          ? Icons.favorite
-                                          : Icons.favorite_border,
-                                      size: 30,
-                                      color: controller.isFavorite(imageData)
-                                          ? Colors.red
-                                          : kiconcolor.withOpacity(.9),
-                                    ),
-                                  ),
+                            ? Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 10,
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                  
+                                  controller.toggleFavorite(imageData);
+                                  controller.ontap();
+                                },
+                                child: Icon(
+                                  controller.isFavorite(imageData)
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  size: 30,
+                                  color: controller.isFavorite(imageData)
+                                      ? Colors.red
+                                      : kiconcolor.withOpacity(.9),
                                 ),
-                              )
-                            : SizedBox(),
+                              ),
+                            )
+                            : const SizedBox(),
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Obx(
                     () => controller.click.value
                         ? Expanded(
                             child: Align(
-                              alignment: Alignment(0, .85),
+                              alignment: const Alignment(0, .65),
                               child: FadeInDown(
                                 child: InkWell(
                                   onTap: () {
                                     _downloadImage(imageData);
                                   },
                                   child: Container(
-                                    padding: EdgeInsets.all(2),
+                                    padding: const EdgeInsets.all(2),
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: kbgcolor,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(16.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(16.0),
                                       child: Icon(
                                         Icons.file_download_outlined,
                                         size: 32,
@@ -147,7 +144,7 @@ class ImageDetail extends StatelessWidget {
                               ),
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                   ),
                 ],
               ),
@@ -179,7 +176,7 @@ Future<void> _downloadImage(String imageUrl) async {
           'Download Successful',
           'The image has been downloaded to the gallery.',
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.transparent.withBlue(4),
+          backgroundColor: kbgcolor.withOpacity(.7),
           colorText: kiconcolor,
         );
       } else {
@@ -187,7 +184,7 @@ Future<void> _downloadImage(String imageUrl) async {
           'Download Failed',
           'Failed to download the image: ${result['errorMessage']}',
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.transparent.withBlue(4),
+             backgroundColor: kbgcolor.withOpacity(.6),
           colorText: kiconcolor,
         );
       }
