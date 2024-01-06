@@ -155,46 +155,47 @@ class ImageDetail extends StatelessWidget {
     );
   }
 Future<void> _downloadImage(String imageUrl) async {
-    try {
-      // Set loading to true when starting the download
-      controller.isLoading.value = true;
+  try {
+    // Set loading to true when starting the download
+    controller.isLoading.value = true;
 
-      Dio dio = Dio();
-      Response<Uint8List> response = await dio.get(
-        imageUrl,
-        options: Options(responseType: ResponseType.bytes),
+    Dio dio = Dio();
+    Response<Uint8List> response = await dio.get(
+      imageUrl,
+      options: Options(responseType: ResponseType.bytes),
+    );
+
+    final result = await ImageGallerySaver.saveImage(
+      Uint8List.fromList(response.data!),
+      quality: 80,
+      name: 'downloaded_image',
+    );
+
+    if (result['isSuccess']) {
+      // Increment and save the download count
+      controller.incrementDownloadCount();
+
+      Get.snackbar(
+        'Download Successful',
+        'The image has been downloaded to the gallery.',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: kbgcolor.withOpacity(.7),
+        colorText: kiconcolor,
       );
-
-      final result = await ImageGallerySaver.saveImage(
-        Uint8List.fromList(response.data!),
-        quality: 80,
-        name: 'downloaded_image',
+    } else {
+      Get.snackbar(
+        'Download Failed',
+        'Failed to download the image: ${result['errorMessage']}',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: kbgcolor.withOpacity(.6),
+        colorText: kiconcolor,
       );
-
-      if (result['isSuccess']) {
-        Get.snackbar(
-          'Download Successful',
-          'The image has been downloaded to the gallery.',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: kbgcolor.withOpacity(.7),
-          colorText: kiconcolor,
-        );
-      } else {
-        Get.snackbar(
-          'Download Failed',
-          'Failed to download the image: ${result['errorMessage']}',
-          snackPosition: SnackPosition.BOTTOM,
-             backgroundColor: kbgcolor.withOpacity(.6),
-          colorText: kiconcolor,
-        );
-      }
-    } catch (e) {
-      print('Error: $e');
-    } finally {
-      // Set loading to false when the download is complete or encounters an error
-    controller.  isLoading.value = false;
     }
+  } catch (e) {
+    print('Error: $e');
+  } finally {
+    // Set loading to false when the download is complete or encounters an error
+    controller.isLoading.value = false;
   }
 }
-
-
+}

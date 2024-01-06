@@ -109,6 +109,7 @@ class Home extends StatelessWidget {
         height: size.height,
         child: Obx(
           () {
+            
             switch (controller.currentIndex.value) {
               case 0:
                 return Wallpapers();

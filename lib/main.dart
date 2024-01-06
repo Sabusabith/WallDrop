@@ -1,13 +1,19 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wall4k/model/favoritemodel.dart';
 import 'package:wall4k/screens/splash/splash.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'controller/api/getphotosController.dart';
 import 'widgets/favorite_adapter.dart';
 
-void main(List<String> args) async {
+void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(  options: DefaultFirebaseOptions.currentPlatform,);
   await Hive.initFlutter();
   Hive.registerAdapter(
       FavoriteItemAdapter()); // Make sure to replace FavoriteItemAdapter with the generated adapter
