@@ -10,8 +10,8 @@ import 'package:wall4k/screens/image_detail_Page/image_detail.dart';
 import '../../controller/api/searchController.dart';
 import '../../model/apiModel/getImagesModel.dart';
 
-class Page1 extends StatelessWidget {
-  Page1({Key? key}) : super(key: key);
+class Wallpapers extends StatelessWidget {
+ Wallpapers({Key? key}) : super(key: key);
   SearchControllers searchControllers = Get.put(SearchControllers());
 
   @override

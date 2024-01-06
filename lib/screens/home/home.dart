@@ -8,9 +8,9 @@ import 'package:wall4k/controller/api/searchController.dart';
 import 'package:wall4k/controller/homecontroller.dart';
 import 'package:wall4k/screens/drawer/drawer.dart';
 import 'package:wall4k/screens/favorites/favorites.dart';
-import 'package:wall4k/screens/page1/page1.dart';
-import 'package:wall4k/screens/page3/page3.dart';
+import 'package:wall4k/screens/profile/profile.dart';
 import 'package:wall4k/screens/searchscreen.dart/searchScreen.dart';
+import 'package:wall4k/screens/walppapers/walppapers.dart';
 import 'package:wall4k/widgets/mybottom_navbar.dart';
 
 import '../../controller/bottam_nav_controller.dart';
@@ -111,13 +111,13 @@ class Home extends StatelessWidget {
           () {
             switch (controller.currentIndex.value) {
               case 0:
-                return Page1();
+                return Wallpapers();
               case 1:
                 return Favorites();
               case 2:
-                return const Page3();
+                return Profile();
               default:
-                return Page1();
+                return Wallpapers();
             }
           },
         ),

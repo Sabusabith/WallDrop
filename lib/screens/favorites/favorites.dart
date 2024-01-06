@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/state_manager.dart';
 import 'package:wall4k/common/colors.dart';
-import 'package:wall4k/screens/page1/page1.dart';
+import 'package:wall4k/screens/walppapers/walppapers.dart';
 
 import '../../controller/favoritecontroller.dart';
 import '../image_detail_Page/image_detail.dart';
