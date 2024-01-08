@@ -52,7 +52,7 @@ FavoritesController fcontroller = Get.put(FavoritesController());
                           TextSpan(
                               text: FirebaseAuth.instance.currentUser?.email)
                         ])),
-                        SizedBox(height: 5,),
+                        SizedBox(height: 10,),
                          Obx(
                     () => Text(
                       'Favorite Images: ${fcontroller.favoriteItems.length}',
@@ -61,6 +61,7 @@ FavoritesController fcontroller = Get.put(FavoritesController());
                       ),
                     ),
                   ),
+                  SizedBox(height: 10,),
                    Obx(
                     () => Text(
                       'Downloaded Images: ${controllers.downloadCount.value}',

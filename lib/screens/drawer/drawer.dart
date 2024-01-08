@@ -46,7 +46,8 @@ class DrawerScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 15),
                     child: ExpansionTile(
                         shape: const Border(),
-                        childrenPadding: const EdgeInsets.symmetric(horizontal: 15),
+                        childrenPadding:
+                            const EdgeInsets.symmetric(horizontal: 15),
                         title: Text(
                           "Categories",
                           style: GoogleFonts.audiowide(
@@ -64,12 +65,16 @@ class DrawerScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: GestureDetector(
-                              onTap: () async {
-                                await categoryController.searchImages(
+                              onTap: ()  {
+                                categoryController.searchImages(
                                     "Art", "10000");
-                                Get.to(CategoryScreen(
+                                      Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CategoryScreen(
                                   name: "Art",
-                                ));
+                                )));
+                          
                               },
                               child: SizedBox(
                                 width: size.width,
@@ -96,12 +101,16 @@ class DrawerScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: GestureDetector(
-                              onTap: () async {
-                                await categoryController.searchImages(
+                              onTap: ()  {
+                                 categoryController.searchImages(
                                     "Abstract", "10000");
-                                Get.to(CategoryScreen(
+                                      Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CategoryScreen(
                                   name: "Abstract",
-                                ));
+                                )));
+                             
                               },
                               child: SizedBox(
                                 width: size.width,
@@ -126,14 +135,17 @@ class DrawerScreen extends StatelessWidget {
                             height: 10,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20),
+                            padding: EdgeInsets.only(left: 20),
                             child: GestureDetector(
-                              onTap: () async {
-                                await categoryController.searchImages(
+                              onTap: () {
+                                categoryController.searchImages(
                                     "Fantasy", "10000");
-                                Get.to(CategoryScreen(
-                                  name: "Fantasy",
-                                ));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CategoryScreen(
+                                              name: "Fantasy",
+                                            )));
                               },
                               child: SizedBox(
                                 width: size.width,
@@ -160,12 +172,14 @@ class DrawerScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: GestureDetector(
-                              onTap: () async {
-                                await categoryController.searchImages(
-                                    "3D", "10000");
-                                Get.to(CategoryScreen(
-                                  name: "3D",
-                                ));
+                              onTap: () {
+                                categoryController.searchImages("3D", "10000");
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CategoryScreen(
+                                              name: "3D",
+                                            )));
                               },
                               child: SizedBox(
                                 width: size.width,
@@ -192,12 +206,15 @@ class DrawerScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: GestureDetector(
-                              onTap: () async {
-                                await categoryController.searchImages(
+                              onTap: () {
+                                categoryController.searchImages(
                                     "Black", "10000");
-                                Get.to(CategoryScreen(
-                                  name: "Black",
-                                ));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CategoryScreen(
+                                              name: "Black",
+                                            )));
                               },
                               child: SizedBox(
                                 width: size.width,
@@ -224,12 +241,15 @@ class DrawerScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: GestureDetector(
-                              onTap: () async {
-                                await categoryController.searchImages(
+                              onTap: () {
+                                categoryController.searchImages(
                                     "Cars", "10000");
-                                Get.to(CategoryScreen(
-                                  name: "Cars",
-                                ));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CategoryScreen(
+                                              name: "Cars",
+                                            )));
                               },
                               child: SizedBox(
                                 width: size.width,
@@ -256,12 +276,15 @@ class DrawerScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: GestureDetector(
-                              onTap: () async {
-                                await categoryController.searchImages(
+                              onTap: () {
+                                categoryController.searchImages(
                                     "Food", "10000");
-                                Get.to(CategoryScreen(
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CategoryScreen(
                                   name: "Food",
-                                ));
+                                )));
                               },
                               child: SizedBox(
                                 width: size.width,
@@ -288,12 +311,16 @@ class DrawerScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: GestureDetector(
-                              onTap: () async {
-                                await categoryController.searchImages(
+                              onTap: ()  {
+                                categoryController.searchImages(
                                     "Dark", "10000");
-                                Get.to(CategoryScreen(
+                                     Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CategoryScreen(
                                   name: "Dark",
-                                ));
+                                )));
+                            
                               },
                               child: SizedBox(
                                 width: size.width,
@@ -320,12 +347,16 @@ class DrawerScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: GestureDetector(
-                              onTap: () async {
-                                await categoryController.searchImages(
+                              onTap: ()  {
+                                categoryController.searchImages(
                                     "Nature", "10000");
-                                Get.to(CategoryScreen(
+                                     Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CategoryScreen(
                                   name: "Nature",
-                                ));
+                                )));
+                               
                               },
                               child: SizedBox(
                                 width: size.width,
@@ -352,12 +383,16 @@ class DrawerScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: GestureDetector(
-                              onTap: () async {
-                                await categoryController.searchImages(
+                              onTap: () {
+                                 categoryController.searchImages(
                                     "Flowers", "10000");
-                                Get.to(CategoryScreen(
+                                     Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CategoryScreen(
                                   name: "Flowers",
-                                ));
+                                )));
+                             
                               },
                               child: SizedBox(
                                 width: size.width,

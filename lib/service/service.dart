@@ -7,9 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:wall4k/controller/bottam_nav_controller.dart';
 import 'package:wall4k/service/sharedData.dart';
 
 import '../common/colors.dart';
+import '../screens/favorites/favorites.dart';
+import '../screens/profile/profile.dart';
+import '../screens/walppapers/walppapers.dart';
+  final BottomNavBarController controller = Get.put(BottomNavBarController());
 
 class AuthServices {
   signInWithGoogle() async {
@@ -36,6 +41,11 @@ Get.snackbar(
           icon: Icon(Icons.done,color: Colors.green,)
         );
 
+ Future.delayed(Duration(seconds: 1)).then((value) {
+ if (controller.currentIndex.value == 2) {
+ return  controller.currentIndex.value = 0;
+ }
+ },);
     });
   }
 

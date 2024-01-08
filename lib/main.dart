@@ -4,10 +4,9 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wall4k/model/favoritemodel.dart';
 import 'package:wall4k/screens/splash/splash.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
 import 'controller/api/getphotosController.dart';
+import 'firebase_options.dart';
 import 'widgets/favorite_adapter.dart';
 
 void main() async {
@@ -20,6 +19,7 @@ void main() async {
   await Hive.openBox<FavoriteItem>('favorites');
 
   runApp(const GetMaterialApp(
+    
     home: MyApp(),
     debugShowCheckedModeBanner: false,
   ));
