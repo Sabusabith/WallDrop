@@ -35,6 +35,7 @@ class BottomNavBar extends StatelessWidget {
                   label: ""),
               BottomNavigationBarItem(icon: Icon(Icons.favorite), label: ""),
               BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
+               
             ],
           ),
         ));

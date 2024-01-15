@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:wall4k/common/colors.dart';
 import 'package:wall4k/controller/api/categoryController.dart';
+import 'package:wall4k/screens/browser/browser_screen.dart';
 import 'package:wall4k/screens/image_detail_Page/image_detail.dart';
 import 'package:wall4k/screens/searchscreen.dart/searchScreen.dart';
 
@@ -69,6 +70,7 @@ class CategoryScreen extends StatelessWidget {
                   ),
                 )),
           ),
+         
         ],
         backgroundColor: Colors.transparent,
         leading: Builder(builder: (BuildContext context) {

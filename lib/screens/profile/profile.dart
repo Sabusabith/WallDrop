@@ -2,13 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wall4k/common/colors.dart';
 import 'package:wall4k/controller/favoritecontroller.dart';
 import 'package:wall4k/controller/login_register_controller.dart';
 import 'package:wall4k/widgets/signin.dart';
-
 import '../../controller/image_detail_controller.dart';
 import '../../service/service.dart';
 import '../../service/sharedData.dart';
@@ -31,47 +31,80 @@ FavoritesController fcontroller = Get.put(FavoritesController());
         height: size.height,
         child: FirebaseAuth.instance.currentUser != null
             ? SafeArea(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Icon(
-                      CupertinoIcons.person_alt_circle,
-                      color: kiconcolor.withOpacity(.7),
-                      size: 80,
-                    ),
-                    SizedBox(height: 30,),
-                    RichText(maxLines: 2,
-                        text: TextSpan(
-                            text: "",
-                            style: GoogleFonts.dmMono(color: kiconcolor,fontSize: 20,),
-
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                    SizedBox(height: 20,),
+                        Obx(
+                      () => Row(mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          
+                      
+                           Column(
+                             children: [
+                               Text(
+                                                       'DOWNLOADS',
+                                                       style: GoogleFonts.dmSans(fontSize:20,fontWeight:FontWeight.w600,
+                                      color: Colors.white.withOpacity(.9),
+                                    ),
+                                                     ),
+                                                        SizedBox(height: 5,),
+                                                       Text(
+                                '${controllers.downloadCount.value}',
+                                style: GoogleFonts.dmMono(fontSize:20,fontWeight:FontWeight.bold,
+                                  color: kiconcolor.withOpacity(.9),
+                                ),
+                              ),
+                             ],
+                           ),
+                             
+                          SizedBox(width: 30,),
+                             Column(
                             children: [
-                          TextSpan(
-                              text: FirebaseAuth.instance.currentUser?.email)
-                        ])),
-                        SizedBox(height: 10,),
-                         Obx(
-                    () => Text(
-                      'Favorite Images: ${fcontroller.favoriteItems.length}',
-                      style: GoogleFonts.dmMono(
-                        color: kiconcolor.withOpacity(.7),
+                              Text(
+                                'FAVORITES',
+                                style: GoogleFonts.dmSans(fontSize:20,fontWeight:FontWeight.w600,letterSpacing:1,
+                             color: Colors.white.withOpacity(.9),
+                                ),
+                              ),
+                              SizedBox(height: 5,),
+                               Text(
+                                '${fcontroller.favoriteItems.length}',
+                                style: GoogleFonts.dmMono(fontSize:20,fontWeight:FontWeight.bold,
+                                  color: kiconcolor.withOpacity(.9),
+                                ),
+                              ),
+                            ],
+                          ),
+                          
+                        ],
                       ),
-                    ),
-                  ),
-                  SizedBox(height: 10,),
-                   Obx(
-                    () => Text(
-                      'Downloaded Images: ${controllers.downloadCount.value}',
-                      style: GoogleFonts.dmMono(
+                    ),     
+                              SizedBox(height: 60,),
+                      Icon(
+                        CupertinoIcons.person_alt_circle,
                         color: kiconcolor.withOpacity(.7),
+                        size: 80,
                       ),
-                    ),
+                      SizedBox(height: 30,),
+                      RichText(maxLines: 2,
+                          text: TextSpan(
+                              text: "",
+                              style: GoogleFonts.dmMono(color: kiconcolor,fontSize: 20,),
+                  
+                              children: [
+                            TextSpan(
+                                text: FirebaseAuth.instance.currentUser?.email)
+                          ])),
+                
+                              Spacer(),
+                    SizedBox(height: 10,),
+                  
+                                     
+                    ],
                   ),
-                    Spacer()
-                  ],
                 ),
               )
             : Column(

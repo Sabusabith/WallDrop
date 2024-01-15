@@ -7,9 +7,11 @@ import 'package:wall4k/screens/splash/splash.dart';
 import 'package:wall4k/service/service.dart';
 
 import '../common/colors.dart';
+import '../controller/bottam_nav_controller.dart';
 import '../screens/home/home.dart';
 import '../service/sharedData.dart';
 LoiginRegisterController controller = Get.put(LoiginRegisterController());
+  final BottomNavBarController controller2 = Get.put(BottomNavBarController());
 
 signInWithGoogle(bool? isGoogle) async {
   if (isGoogle ?? true) {
@@ -46,7 +48,11 @@ signInWithGoogle(bool? isGoogle) async {
           icon: Icon(Icons.done,color: Colors.green,)
         );
           controller.loginsucces(true);
-        Get.to(Splash());
+     Future.delayed(Duration(seconds: 1)).then((value) {
+ if (controller2.currentIndex.value == 2) {
+ return  controller2.currentIndex.value = 0;
+ }
+ },);
       }
     }).onError((error, stackTrace) {
       // network!
@@ -92,7 +98,11 @@ signInWithGoogle(bool? isGoogle) async {
           icon: Icon(Icons.done,color: Colors.green,)
         );
           controller.loginsucces(true);
-    Get.to(Splash());
+  Future.delayed(Duration(seconds: 1)).then((value) {
+ if (controller2.currentIndex.value == 2) {
+ return  controller2.currentIndex.value = 0;
+ }
+ },);
       }
     }).onError((error, stackTrace) {
       // network!
