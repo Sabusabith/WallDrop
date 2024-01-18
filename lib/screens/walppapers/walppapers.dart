@@ -8,10 +8,12 @@ import 'package:loading_indicator/loading_indicator.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wall4k/common/colors.dart';
 import 'package:wall4k/controller/api/getphotosController.dart';
+import 'package:wall4k/controller/splashController.dart';
 import 'package:wall4k/screens/image_detail_Page/image_detail.dart';
 
 import '../../controller/api/searchController.dart';
 import '../../model/apiModel/getImagesModel.dart';
+import '../../service/network_status/networkStatus.dart';
 
 class Wallpapers extends StatelessWidget {
   Wallpapers({Key? key}) : super(key: key);
@@ -77,6 +79,7 @@ class Wallpapers extends StatelessWidget {
                     elevation: 3,
                     child: InkWell(
                       onTap: () {
+                        checkConnection();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -173,7 +176,26 @@ class Wallpapers extends StatelessWidget {
       }
     });
   }
+
+
 }
+  checkConnection() async {
+    bool network = await internetCheck();
+
+    if (network) {
+      
+    
+    } else {
+       
+       Future.delayed(Duration(seconds: 3), () {
+        Get.to(NoConnection());
+      
+    });
+    
+  
+
+    }
+  }
 
 class ShimmerEffect extends StatelessWidget {
   const ShimmerEffect({super.key});

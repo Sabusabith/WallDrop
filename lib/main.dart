@@ -6,6 +6,7 @@ import 'package:wall4k/model/favoritemodel.dart';
 import 'package:wall4k/screens/splash/splash.dart';
 
 import 'controller/api/getphotosController.dart';
+import 'controller/api/searchController.dart';
 import 'firebase_options.dart';
 import 'widgets/favorite_adapter.dart';
 
@@ -15,7 +16,7 @@ void main() async {
   await Firebase.initializeApp(  options: DefaultFirebaseOptions.currentPlatform,);
   await Hive.initFlutter();
   Hive.registerAdapter(
-      FavoriteItemAdapter()); // Make sure to replace FavoriteItemAdapter with the generated adapter
+      FavoriteItemAdapter()); 
   await Hive.openBox<FavoriteItem>('favorites');
 
   runApp(const GetMaterialApp(
@@ -24,6 +25,8 @@ void main() async {
     debugShowCheckedModeBanner: false,
   ));
   final GetPhotosController photosController = Get.put(GetPhotosController());
+    SearchControllers searchControllers = Get.put(SearchControllers());
+
 }
 
 class MyApp extends StatelessWidget {

@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wall4k/common/colors.dart';
-import 'package:wall4k/screens/spage/homeview.dart';
 
 import '../../controller/api/searchController.dart';
 import '../../service/sharedData.dart';
@@ -94,7 +93,7 @@ class SearchScreen extends StatelessWidget {
                 onChanged: (value) {
                   searchControllerTextField.text = value;
 
-                  searchControllers.searchImages(value, "1000");
+                  searchControllers.searchImages(value, "100");
                 },
                 controller: searchControllerTextField,
                 cursorColor: kiconcolor,
@@ -129,74 +128,7 @@ class SearchScreen extends StatelessWidget {
         height: size.height,
         child: Column(
           children: [
-            Obx(() => searchControllerTextField.value.text == sname
-                ? Expanded(
-                    child: Container(
-                    width: size.width,
-                    height: size.height,
-                    color: kbgcolor,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                      
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Image.asset("assets/images/hi.gif"),
-                            ],
-                          ),
-                           SizedBox(
-                            height: 45,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                "Hello Mehbin",
-                                style: GoogleFonts.audiowide(
-                                    color: kiconcolor, fontSize: 25),
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    " ❣️",
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  Text(
-                                    " 🫰🏻",
-                                    style: TextStyle(fontSize: 25),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 45,
-                          ),
-                          Container(
-                              width: 140,
-                              child: ElevatedButton(
-                                  style: ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll(
-                                          Colors.pink.withOpacity(.7))),
-                                  onPressed: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeView()));
-                                  },
-                                  child: Text(
-                                    "Click Here",
-                                    style: GoogleFonts.audiowide(
-                                        color: Colors.white),
-                                  ))),
-                     
-                        ],
-                      ),
-                    ),
-                  ))
-                : Expanded(
+            Obx(() => Expanded(
                     child: searchControllers.change.value
                         ? buildSearchResults()
                         : buildSearchResults2()))

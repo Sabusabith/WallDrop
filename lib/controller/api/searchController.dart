@@ -4,6 +4,11 @@ import 'package:dio/dio.dart'; // Import Dio package
 import 'package:wall4k/model/apiModel/searchModel.dart';
 
 class SearchControllers extends GetxController {
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+  }
   final Dio _dio = Dio();
   RxBool isLoading = false.obs;
   RxList<Photo> searchResults = <Photo>[].obs;

@@ -13,9 +13,12 @@ import 'package:wall4k/controller/image_detail_controller.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
+import '../../controller/splashController.dart';
+
 class ImageDetail extends StatelessWidget {
   ImageDetail({super.key, required this.imageData});
   final String imageData;
+  SplasController  splasController = Get.put(SplasController());
 
   final ImageDetailController controller = Get.put(ImageDetailController());
 
@@ -45,7 +48,7 @@ class ImageDetail extends StatelessWidget {
                     )
                 
               : GestureDetector(
-          behavior: HitTestBehavior.opaque,
+      
           onTap: () {
             controller.ontap();
           },
@@ -73,7 +76,7 @@ class ImageDetail extends StatelessWidget {
                               ),
                               child: InkWell(
                                 onTap: () {
-                                 
+                                  print("Called");
                                   Get.back();
                                 },
                                 child: Icon(

@@ -83,7 +83,8 @@ class Home extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              _showBottomSheet(context, size);
+              // _showBottomSheet(context, size);
+              _showWatchAddDialog(context);
             },
             child: Container(
                 height: 30,
@@ -234,4 +235,54 @@ _showBottomSheet(BuildContext context, Size size) {
       );
     },
   );
+}
+
+void _showWatchAddDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Color.fromARGB(255, 3, 3, 3),
+        shape: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+        title: Text(
+          "Watch Ad",
+          style: GoogleFonts.dmSans(color: Colors.white),
+        ),
+        content: Text("Watch an ad to earn points.",
+            style: GoogleFonts.dmMono(color: Colors.white)),
+        actions: [
+          ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 61, 57, 57)),
+                shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)))),
+            onPressed: () {
+              // Add your logic here for watching the ad
+              // For example, you can call a function to handle watching the ad
+              _watchAd();
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: Text("Watch Ad",style: TextStyle(color: Colors.white),),
+          ),
+          ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 61, 57, 57)),
+                shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)))),
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: Text("Cancel",style: TextStyle(color: Colors.white),),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+// Function to handle watching the ad
+void _watchAd() {
+  // Add your logic here for watching the ad
+  // For example, you can increment the points or perform other actions
+  print("Watch Ad logic");
 }
